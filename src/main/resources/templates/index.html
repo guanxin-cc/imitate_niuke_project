@@ -120,7 +120,6 @@
 				<ul class="list-unstyled">
 <!--					media：Bootstrap 媒体对象类，用来实现「左图右文」的布局（头像在左，内容在右）-->
 <!--					pb-3/pt-3：padding-bottom/padding-top，给上下各加 1rem 内边距，拉开帖子间距。-->
-<!--					border-bottom：给帖子底部加一条横线，分隔不同帖子-->
 					<li class="media pb-3 pt-3 mb-3 border-bottom" th:each="map:${discussPosts}">
 <!--						点击头像跳转用户主页-->
 						<a href="site/profile.html">
@@ -161,13 +160,17 @@
 <!--						th:class="|类名 ${三元运算}|"：拼接动态类名的安全写法-->
 						<li th:class="|page-item ${page.current==1?'disabled':''}|">
 <!--							/index?current=4-->
-							<a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a></li>
-						<li th:class="|page-item ${i==page.current?'active':''}|" th:each="i:${#numbers.sequence(page.from,page.to)}">
-							<a class="page-link" href="#" th:text="${i}">1</a>
+							<a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a>
 						</li>
+
+						<li th:class="|page-item ${i==page.current?'active':''}|" th:each="i:${#numbers.sequence(page.from,page.to)}">
+							<a class="page-link" th:href="@{${page.path}(current=${i})}" th:text="${i}">1</a>
+						</li>
+
 						<li th:class="|page-item ${page.current==page.total?'disabled':''}|">
 							<a class="page-link" th:href="@{${page.path}(current=${page.current+1})}">下一页</a>
 						</li>
+
 						<li class="page-item">
 							<a class="page-link" th:href="@{${page.path}(current=${page.total})}">末页</a>
 						</li>

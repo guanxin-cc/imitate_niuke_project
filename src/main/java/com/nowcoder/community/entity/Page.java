@@ -67,7 +67,7 @@ public class Page {
      *
      * @return
      */
-    public int getTotalPageCounts() {
+    public int getTotal() {
         // rows / limit [+1]
         if (rows % limit == 0) {
             return rows / limit;
@@ -93,7 +93,7 @@ public class Page {
      */
     public int getTo() {
         int to = current + 2;
-        int total = getTotalPageCounts();
+        int total = getTotal();
         return to > total ? total : to;
     }
 

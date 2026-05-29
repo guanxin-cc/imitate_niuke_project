@@ -56,8 +56,10 @@ public class HomeController {
         page.setRows(discussPostService.findDiscussPostRows(0));
         page.setPath("/index");
 
+        System.out.println(page.getCurrent());
+
         List<Map<String,Object>> discussPosts = new ArrayList<>();
-        List<DiscussPost> posts = discussPostService.findDiscussPosts(0, 0, 10);
+        List<DiscussPost> posts = discussPostService.findDiscussPosts(0, page.getOffset(), 10);
         if(posts != null) {
             for (DiscussPost post : posts) {
                 Map<String, Object> map = new HashMap<>();
